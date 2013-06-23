@@ -16,6 +16,8 @@ class main
 	public static Boolean config_loaded;
 	public static Boolean config_written = true;
 	public static Boolean installed;
+	public static Boolean proc_mode = false;
+	
 	//Currently undefined user variables
 	public static String first_name, last_name, fullname = first_name + last_name;
 	
@@ -79,7 +81,9 @@ class main
 		}
 	}
 	public static void AI_Proc () {
-	
+		while (proc_mode == true) {
+			
+		}
 	}
 	
 }
