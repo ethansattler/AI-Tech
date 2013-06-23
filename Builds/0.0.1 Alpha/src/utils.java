@@ -1,3 +1,8 @@
+//utils.java
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Calendar;
+
 class utils {
 	
 	public static void main (String[] args)  
@@ -16,5 +21,29 @@ class utils {
 		}
 		return sb.toString();
 		
+	}
+	
+	public static String get_time () {
+		Calendar cal = Calendar.getInstance();
+    	cal.getTime();
+    	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+		String time = ""+sdf.format(cal.getTime());
+    	return time;
+	}
+	
+	public static Boolean yes_parse(String input) {
+		if (Arrays.asList("yes", "y", "yep", "yea", "aye", "true", "affirmative", "granted", "mhm").contains(input.toLowerCase().trim())) {
+			return true;
+		} else {
+		return false;
+		}
+	}
+	
+	public static Boolean no_parse(String input) {
+		if (Arrays.asList("no","n","nope").contains(input.toLowerCase().trim())) {
+			return true;
+		} else {
+		return false;
+		}
 	}
 }

@@ -17,12 +17,36 @@ class main
 	public static Boolean config_written = true;
 	public static Boolean installed;
 	public static Boolean proc_mode = false;
+	public static Boolean internet_access = false, place_found = false, internet_error = false;
+	public static String IP, place;
 
 	//Currently undefined user variables
-	public static String first_name, last_name, fullname = first_name + last_name;
+	public static String first_name, last_name, fullname;
 	
 	public static void main (String[] args) 
 	{
+		//Check Internet 
+		try {
+			IP = checkip.getextIp();
+			internet_access = true;
+		} catch (Exception ex) {
+			internet_access = false;
+		}
+		
+		//Setup internet variables use this format to save API key uses
+		try {
+			if (internet_access == true && checkip.ip_changed() == true) 
+			{
+				properties.set_prop("IP", IP);
+				place = checkip.geoLocate();
+				properties.set_prop("place", place);
+				place_found = true;
+			}
+		} catch (Exception e) {
+			internet_error = true;
+		}
+		
+		
 		//Check if System is installed properly.
 		if (config_file.exists()) {
 			installed = true;
@@ -43,6 +67,7 @@ class main
 		}
 		
 		//Debug installed and config variables here:
+		installed = false;
 		
 		if (installed == null) {
 			//Throw Configuration error.
@@ -50,11 +75,11 @@ class main
 		}
 		
 		if (installed == false) {
-			System.out.print("Hello, I don't belive we've met.\nCould you tell me your first name? ");
-			
+			procedure.install();
+			procedure.welcome();
 		}
 		if (installed == true) {
-			System.out.print("Hello...");
+			procedure.welcome();
 		}
 	
 	}

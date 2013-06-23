@@ -1,8 +1,8 @@
+//dictionary.java
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Scanner;
 
-//dictionary.java
 
 class dictionary 
 {

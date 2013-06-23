@@ -1,3 +1,4 @@
+//checkip.java
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -22,6 +23,7 @@ public class checkip {
 		System.exit(0);
 	}
 
+	
 	public static String geoLocate() throws IOException {
 		try {
 	        URL whatismyip = new URL("http://api.db-ip.com/addrinfo?addr="+ getextIp() +"&api_key="+ randomapi());
@@ -52,9 +54,20 @@ public class checkip {
 	    }
 	}
 	
-
+	public static Boolean ip_changed() {
+		try {
+		Object ip1 = properties.get_prop ("IP");
+		String ip2 = getextIp();
+		if (ip1.equals(ip2)) {
+			return false;
+		}
+		return true;
+		} catch (Exception ex) {
+			return false;
+		}
+	}
  
-private static String randomapi() {
+	private static String randomapi() {
 	Random rand = new Random();
 	int  n = rand.nextInt(5) + 1;
 	if (n == 1) {
