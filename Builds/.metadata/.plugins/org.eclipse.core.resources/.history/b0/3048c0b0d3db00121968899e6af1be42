@@ -46,7 +46,7 @@ class properties
 		}
 	}
 	
-	public static Object get_prop (String prop) {
+	public static Boolean get_prop (String prop) {
 		try {
 			main.config_prop.getProperty(prop);
 			return true;

@@ -38,26 +38,19 @@ class main
 			}
 		}
 		
-		//Debug installed and config variables here:
-		installed = true;
-		
-		if (installed == null) {
-			//Throw Configuration error.
-			error("config_startup");
-		}
-		
 		if (installed == false) {
 			System.out.print("Hello, I don't belive we've met.\nCould you tell me your name? ");
-			
 		}
 		if (installed == true) {
 			System.out.print("Hello...");
 		}
-	
+		else if (installed == null) {
+			//Throw Configuration error.
+			config_error();
+		}
 	}
-	public static void error (String error) 
+	public static void config_error () 
 	{
-		if (error.equals("config_startup")) {
 		System.out.print("System Error, Configuration files tampered, or damaged. Review AI-Tech wiki for help, exiting...");
 		try {
 			Thread.sleep(1000);
@@ -65,17 +58,6 @@ class main
 			System.out.print("System interrupted, Error.");
 			
 		}	
-		}
-		
-		if (error.equals("adderrorhere")) {
-			System.out.print("adderrorhere. Exiting...");
-			System.exit(0);
-		}
-		
-		else {
-			System.out.print("Unknown Error. Exiting...");
-			System.exit(0);
-		}
 	}
 	public static void AI_Proc () {
 	

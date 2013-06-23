@@ -37,18 +37,8 @@ class properties
 		}
 	}
 	
-	public static Boolean set_prop (String prop, String value) {
+	public static Boolean set () {
 		try {
-			main.config_prop.setProperty(prop, value);
-			return true;
-		} catch (Exception ex) {
-			return false;
-		}
-	}
-	
-	public static Object get_prop (String prop) {
-		try {
-			main.config_prop.getProperty(prop);
 			return true;
 		} catch (Exception ex) {
 			return false;

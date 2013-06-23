@@ -39,8 +39,7 @@ class main
 		}
 		
 		//Debug installed and config variables here:
-		installed = true;
-		
+		installed = null;
 		if (installed == null) {
 			//Throw Configuration error.
 			error("config_startup");
@@ -48,7 +47,7 @@ class main
 		
 		if (installed == false) {
 			System.out.print("Hello, I don't belive we've met.\nCould you tell me your name? ");
-			
+		
 		}
 		if (installed == true) {
 			System.out.print("Hello...");

@@ -28,30 +28,4 @@ class properties
 		
 	}
 	
-	public static Boolean store () {
-		try {
-			main.config_prop.store(new FileOutputStream(main.config_path), null);
-			return true;
-		} catch (Exception ex) {
-			return false;
-		}
-	}
-	
-	public static Boolean set_prop (String prop, String value) {
-		try {
-			main.config_prop.setProperty(prop, value);
-			return true;
-		} catch (Exception ex) {
-			return false;
-		}
-	}
-	
-	public static Object get_prop (String prop) {
-		try {
-			main.config_prop.getProperty(prop);
-			return true;
-		} catch (Exception ex) {
-			return false;
-		}
-	}
 }
