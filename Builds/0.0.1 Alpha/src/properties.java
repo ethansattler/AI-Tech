@@ -31,6 +31,7 @@ class properties
 	public static Boolean store () {
 		try {
 			main.config_prop.store(new FileOutputStream(main.config_path), null);
+			properties.store();
 			return true;
 		} catch (Exception ex) {
 			return false;
