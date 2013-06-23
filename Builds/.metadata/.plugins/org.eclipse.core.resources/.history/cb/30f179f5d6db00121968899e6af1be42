@@ -39,6 +39,7 @@ class main
 		}
 		
 		//Debug installed and config variables here:
+		installed = true;
 		
 		if (installed == null) {
 			//Throw Configuration error.
