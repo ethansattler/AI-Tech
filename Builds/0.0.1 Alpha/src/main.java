@@ -16,6 +16,8 @@ class main
 	public static Boolean config_loaded;
 	public static Boolean config_written = true;
 	public static Boolean installed;
+	//Currently undefined user variables
+	public static String first_name, last_name, fullname = first_name + last_name;
 	
 	public static void main (String[] args) 
 	{
@@ -46,7 +48,7 @@ class main
 		}
 		
 		if (installed == false) {
-			System.out.print("Hello, I don't belive we've met.\nCould you tell me your name? ");
+			System.out.print("Hello, I don't belive we've met.\nCould you tell me your first name? ");
 			
 		}
 		if (installed == true) {
