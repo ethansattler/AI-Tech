@@ -1,5 +1,7 @@
 Update Log:
-###################################################
+
+(Sun. Jun 23, 2013) 5:04:27 AM: Wiki Started.
+
 (Sun. Jun 23, 2013) 4:48:40 AM: Basic System implemented; Added basic method library structure.
 
 (Sun. Jun 23, 2013) 4:30:25 AM: Basic Error handling
