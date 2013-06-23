@@ -65,7 +65,7 @@ class main
 				config_written = false;
 			}
 		}
-		
+																																																																					
 		//Debug installed and config variables here:
 		installed = false;
 		
@@ -98,6 +98,9 @@ class main
 		if (error.equals("adderrorhere")) {
 			System.out.print("adderrorhere. Exiting...");
 			System.exit(0);
+		}
+		if (error.equals("no internet")) {
+			System.out.print("Warning no internet access.");
 		}
 		
 		else {
