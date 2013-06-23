@@ -1,3 +1,7 @@
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.Scanner;
+
 //dictionary.java
 
 class dictionary 
@@ -10,7 +14,17 @@ class dictionary
 	
 	public static Object dictionary_lookup (String word) 
 	{
-		return "Dictonary is still being built";	
+		try {
+			URL dict = new URL("http://blogwithme.net/dictionary/xml_files/check3.php?word=" + word); 
+			  URLConnection dictConnection = dict.openConnection(); 
+			  Scanner in = new Scanner(dict.openStream());
+			  String line = in.nextLine();
+			  line = line.concat(".");
+			  line = utils.WordWrap(line);
+			  return line;
+		} catch (Exception ex) {
+			return null;
+		}	
 	}
 	public static Object dictionary_add (String word, String definition, Boolean overwrite) 
 	{

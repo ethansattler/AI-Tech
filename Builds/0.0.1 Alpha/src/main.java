@@ -17,7 +17,7 @@ class main
 	public static Boolean config_written = true;
 	public static Boolean installed;
 	public static Boolean proc_mode = false;
-	
+
 	//Currently undefined user variables
 	public static String first_name, last_name, fullname = first_name + last_name;
 	
@@ -65,7 +65,7 @@ class main
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
-			System.out.print("System interrupted, Error.");
+			System.out.print("System interrupted, Error...");
 			
 		}	
 		}
