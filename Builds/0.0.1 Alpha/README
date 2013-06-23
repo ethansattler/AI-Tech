@@ -1,0 +1,10 @@
+Build Version: 0.0.1 Alpha (No GUI)
+
+Replace X.Y.Z with the build version, (Ignore Alpha/Beta if applicable).
+
+1. To run Download the runnable .jar file from the jar/ directory.
+2. Open Terminal/Command Prompt
+3. Naviage to the Jar file using the "cd [Directory]" command
+4A. For Windows: Type "jar AI.X.Y.Z.jar"
+4B. For Linux: Type "chmod +x AI.X.Y.Z.jar" (This only needs to be done once),
+then type: "./AI.X.Y.Z.jar"	
