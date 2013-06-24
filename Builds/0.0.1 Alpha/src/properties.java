@@ -33,7 +33,6 @@ class properties
 	public static Boolean store () {
 		try {
 			main.config_prop.store(new FileOutputStream(main.config_path), null);
-			properties.store();
 			return true;
 		} catch (Exception ex) {
 			return false;
@@ -43,18 +42,19 @@ class properties
 	public static Boolean set_prop (String prop, String value) {
 		try {
 			main.config_prop.setProperty(prop, value);
+			properties.store();
 			return true;
 		} catch (Exception ex) {
 			return false;
 		}
 	}
 	
-	public static Object get_prop (String prop) {
+	public static String get_prop (String prop) {
 		try {
-			main.config_prop.getProperty(prop);
-			return true;
+			return main.config_prop.getProperty(prop);
 		} catch (Exception ex) {
-			return false;
+			main.error("Missing property");
+			return "Error...";
 		}
 	}
 }

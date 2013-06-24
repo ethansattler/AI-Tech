@@ -23,7 +23,7 @@ class main
 	//Currently undefined user variables
 	public static String first_name, last_name, fullname;
 	
-	public static void main (String[] args) 
+	public static void main (String[] args) throws IOException, InterruptedException 
 	{
 		//Check Internet 
 		try {
@@ -44,6 +44,11 @@ class main
 			}
 		} catch (Exception e) {
 			internet_error = true;
+		}
+		
+		if (place == null) {
+			place = checkip.geoLocate();
+			place_found = true;
 		}
 		
 		
@@ -99,8 +104,11 @@ class main
 			System.out.print("adderrorhere. Exiting...");
 			System.exit(0);
 		}
+		if (error.equals("Missing property")) {
+			System.out.print("Warning: Missing property");
+		}
 		if (error.equals("no internet")) {
-			System.out.print("Warning no internet access.");
+			System.out.print("Warning: no internet access.");
 		}
 		
 		else {

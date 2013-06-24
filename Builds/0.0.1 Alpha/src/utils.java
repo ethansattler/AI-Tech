@@ -1,4 +1,7 @@
 //utils.java
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -45,5 +48,20 @@ class utils {
 		} else {
 		return false;
 		}
+	}
+	
+	public static void speak(String message) throws IOException, InterruptedException {
+		Process p;
+			p = Runtime.getRuntime().exec(new String[] {"espeak" , message});
+			//p.waitFor();
+			 
+			  BufferedReader reader = 
+			     new BufferedReader(new InputStreamReader(
+				 p.getInputStream()));
+			  String line = reader.readLine();
+			  while (line != null) {
+				line = reader.readLine();
+			  }
+
 	}
 }
