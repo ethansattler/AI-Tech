@@ -52,7 +52,7 @@ class utils {
 	
 	public static void speak(String message) throws IOException, InterruptedException {
 		Process p;
-			p = Runtime.getRuntime().exec(new String[] {"espeak" , message});
+			p = Runtime.getRuntime().exec(new String[] {"espeak", "-g 5" , message});
 			//p.waitFor();
 			 
 			  BufferedReader reader = 

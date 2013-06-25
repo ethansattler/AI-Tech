@@ -16,9 +16,10 @@ class main
 	public static Boolean config_loaded;
 	public static Boolean config_written = true;
 	public static Boolean installed;
+	public static Boolean just_installed = false;
 	public static Boolean proc_mode = false;
 	public static Boolean internet_access = false, place_found = false, internet_error = false;
-	public static String IP, place;
+	public static String IP, place, audio;
 
 	//Currently undefined user variables
 	public static String first_name, last_name, fullname;
@@ -72,7 +73,7 @@ class main
 		}
 																																																																					
 		//Debug installed and config variables here:
-		installed = false;
+		//installed = false;
 		
 		if (installed == null) {
 			//Throw Configuration error.
@@ -80,11 +81,13 @@ class main
 		}
 		
 		if (installed == false) {
-			procedure.install();
-			procedure.welcome();
+			procedure.install();		
 		}
+		
 		if (installed == true) {
 			procedure.welcome();
+			proc_mode = true;
+			AI_Proc ();
 		}
 	
 	}
