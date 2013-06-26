@@ -1,5 +1,7 @@
 //utils.java
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
@@ -48,6 +50,18 @@ class Utils {
 		} else {
 		return false;
 		}
+	}
+	
+	public static String read(String file) throws IOException {
+		
+		BufferedReader br = null;
+		br = new BufferedReader(new FileReader(file));
+		StringBuffer sb = new StringBuffer("");
+		while (br.readLine() != null) {
+			sb.append("," + br.readLine());
+		}
+		return sb.toString();
+		
 	}
 	
 	public static void speak(String message) throws IOException, InterruptedException {

@@ -52,6 +52,10 @@ class Main
 			place_found = true;
 		}
 		
+		//Start language parser
+		Natural_Parser.set_verb_list();
+		
+		
 		
 		//Check if System is installed properly.
 		if (config_file.exists()) {
