@@ -16,7 +16,7 @@ class Main
 	public static Properties config_prop = new Properties();
 	public static Boolean config_loaded, config_written = true, installed, just_installed = false, proc_mode = false;
 	public static Boolean internet_access = false, place_found = false, internet_error = false;
-	public static String IP, place, audio, stdin;
+	public static String IP, place, audio, stdin, motd;
 	
 
 	//Currently undefined user variables
@@ -40,10 +40,22 @@ class Main
 				place = Checkip.geoLocate();
 				Properties_Utils.set_prop("place", place);
 				place_found = true;
+				
+			}
+			
+			if (internet_access == true)
+			{
+			//Get motd
+			motd = Readfromserver.getpage("http://aiftp.zapto.org/motd");
+			
+			//Echo motd (Debugging only)
+			System.out.println("MOTD - " + motd);
 			}
 		} catch (Exception e) {
 			internet_error = true;
 		}
+		
+
 		
 		if (place == null) {
 			place = Checkip.geoLocate();
