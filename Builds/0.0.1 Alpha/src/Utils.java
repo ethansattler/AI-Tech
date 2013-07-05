@@ -31,7 +31,7 @@ class Utils {
 	public static String get_time () {
 		Calendar cal = Calendar.getInstance();
     	cal.getTime();
-    	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+    	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss z");
 		String time = ""+sdf.format(cal.getTime());
     	return time;
 	}
@@ -39,7 +39,7 @@ class Utils {
 	public static String get_12hr_time () {
 		Calendar cal = Calendar.getInstance();
     	cal.getTime();
-    	SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
+    	SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a z");
 		String time = ""+sdf.format(cal.getTime());
     	return time;
 	}

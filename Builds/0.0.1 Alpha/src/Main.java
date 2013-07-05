@@ -77,7 +77,7 @@ class Main
 			}
 		}
 																																																																					
-		//Debug installed and config variables here:
+		//Debug installed and configuration variables here:
 		//installed = false;
 		
 		if (installed == null) {
@@ -109,6 +109,9 @@ class Main
 		if (error.equals("runtime")) {
 			System.out.print("Warning: runtime error");
 		}
+		if (error.equals("install")) {
+			System.out.print("Warning: installation error");
+		}
 		if (error.equals("adderrorhere")) {
 			System.out.print("adderrorhere. Exiting...");
 			System.exit(0);
@@ -125,44 +128,158 @@ class Main
 			System.exit(0);
 		}
 	}
-	public static void AI_Proc () {
+	public static void AI_Proc () throws IOException, InterruptedException {
 		while (proc_mode == true) {
 			System.out.print("> ");
 			stdin = input.nextLine();
 			
+			//Only parse if string isn't null
+			if (!stdin.equals("")) {
+				
 			//Check for (direct to AI) ;; command
 			if (stdin.startsWith(";;")) {
 				Direct_to_AI(stdin);
+			} else {
+				parse(stdin);
+			}
+			
 			}
 		}
 	}
 	
-	public static void Direct_to_AI(String input)
+	private static void clearConsole()
+	{
+		for(int i = 0; i < 25; i++) System.out.println();
+	}
+	
+	public static void parse(String stdin) throws IOException, InterruptedException
+	{
+		stdin = stdin.toLowerCase();
+		
+		if (stdin.contains("what is"))
+		{
+			what_is_parse(stdin);
+		} 
+		else if (stdin.contains("where is")) 
+		{
+			where_is_parse(stdin);
+		} else {
+			unknown();
+		}
+	}
+	
+	public static void what_is_parse(String stdin) throws IOException, InterruptedException
+	{
+		//Replace "what is"
+		stdin = stdin.replace("what is", "");
+		
+		say("what is", true);
+	}
+	
+	public static void where_is_parse(String stdin) throws IOException, InterruptedException
+	{
+		//Replace "where is"
+		stdin = stdin.replace("where is", "");
+		
+		say("where is", true);
+	}
+	
+	public static void unknown() throws IOException, InterruptedException
+	{
+		say("I don't know what to say", true);
+	}
+	public static void say(String input, Boolean newline) throws IOException, InterruptedException
+	{
+		if (Properties_Utils.get_prop("use_audio").equals("yes")) {
+		if (newline == true) {
+			System.out.println(input);
+			Utils.speak(input);
+		} else {
+			System.out.print(input);
+			Utils.speak(input);	
+		}
+		} else {
+			if (newline == true) {
+				System.out.println(input);
+				//Utils.speak(input);
+			} else {
+				System.out.print(input);
+				//Utils.speak(input);	
+			}
+		}
+	}
+	
+	public static void Direct_to_AI(String input) throws IOException, InterruptedException
 	{
 		input = input.replace(";;", "");
 		
 		if (input.startsWith("echo "))
 		{
 			input = input.replace("echo ", "");
-			System.out.println(input);
+			say(input, true);
 		}
 		
-		if (input.equals("clear"))
+		if (input.startsWith("clear"))
 		{
-			try {
-				Runtime.getRuntime().exec("clear");
-			} catch (Exception ex) {
-				error("runtime");
+			say("clearing", true);
+			clearConsole();
+		}
+		
+		if (input.startsWith("audio"))
+		{
+			input = input.replace("audio", "");
+			
+			if (input.contains("on")) {
+				Properties_Utils.set_prop("use_audio", "yes");
+			} else {
+				Properties_Utils.set_prop("use_audio", "no");
 			}
+		}
+		
+		if (input.startsWith("propout ")) {
+			input = input.replace("propout ", "");
+			say(Properties_Utils.get_prop(input), true);
+		}
+		
+		if (input.startsWith("first_name="))
+		{
+			input = input.replace("first_name=", "");
+			Properties_Utils.set_prop("first_name", input);
+		}
+		
+		if (input.startsWith("last_name="))
+		{
+			input = input.replace("last_name=", "");
+			Properties_Utils.set_prop("last_name", input);
+		}
+		
+		if (input.startsWith("place="))
+		{
+			input = input.replace("place=", "");
+			input.trim();
+			Properties_Utils.set_prop("place", input);
+			Properties_Utils.set_prop("place_confirmed", "true");
 		}
 		
 		if (input.contains("time"))
 		{
 			if (input.contains("-12"))
 			{
-				System.out.println(Utils.get_12hr_time ());	
+				say(Utils.get_12hr_time (), true);	
 			} else {
-				System.out.println(Utils.get_time());
+				say(Utils.get_time(), true);
+			}
+		}
+		
+		if (input.equals("reinstall"))
+		{
+			try {
+				Procedure.install();
+				//Procedure.welcome();
+				proc_mode = true;
+				AI_Proc ();
+			} catch (IOException | InterruptedException e) {
+				error("install");
 			}
 		}
 	}

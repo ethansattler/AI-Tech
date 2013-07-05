@@ -35,7 +35,7 @@ class Procedure {
 	public static void first_name () throws IOException, InterruptedException {
 		System.out.print("Hello, I don't belive we've met.\nCould you tell me your first name? ");
 		Utils.speak("Hello, I don't belive we've met. Could you tell me your first name?");
-		Main.first_name = Main.input.nextLine().trim();
+		Main.first_name = Main.input.next().trim();
 		if (Main.first_name == null || Main.first_name == "") {
 			Main.first_name = "Unknown";
 		}
@@ -46,11 +46,13 @@ class Procedure {
 		System.out.print("Oh ok " + Main.first_name + ", what's your last name? ");
 		Utils.speak("Oh ok " + Main.first_name + ", what's your last name? ");
 		Main.last_name = Main.input.nextLine().trim();
+		Main.input.next();
 		if (Main.last_name == null || Main.last_name == "") {
 			Main.last_name = "Unknown";
 		}
 		Properties_Utils.set_prop("last_name", Main.last_name);
 		Main.fullname = Main.first_name + " " + Main.last_name; 
+		Main.fullname = Main.fullname.trim();
 	}
 	
 	public static void location() throws IOException, InterruptedException {
@@ -63,11 +65,15 @@ class Procedure {
 			Properties_Utils.set_prop("place_confirmed", "true");
 		} else {
 			System.out.print("Oh where are we then? ");
-			Utils.speak("Oh where are we then? ");
-			String place = Main.input.nextLine().trim();
+			Utils.speak("Oh where are we then?");
+			String place = Main.input.next();
+			place = place.trim();
+			if (place != null) {
 			Properties_Utils.set_prop("place", place);
 			Main.place_found = true;
 			Properties_Utils.set_prop("place_confirmed", "true");
+			Main.input.next();
+			}
 		}
 	}
 	public static void audio() throws IOException, InterruptedException {
