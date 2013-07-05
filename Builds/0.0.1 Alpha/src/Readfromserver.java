@@ -24,4 +24,16 @@ class Readfromserver
          in.close();
          return a.toString();
      }
+	 
+	 public static String motd() throws IOException
+	 {
+		 if (Main.internet_access == true)
+			{
+			//Get motd
+			 Main.motd = Readfromserver.getpage("http://aiftp.zapto.org/motd");
+			 	return Main.motd;
+			} else {
+				return "No Message aavailable";
+			}
+	 }
 }

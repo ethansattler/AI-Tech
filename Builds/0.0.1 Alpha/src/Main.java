@@ -46,7 +46,7 @@ class Main
 			if (internet_access == true)
 			{
 			//Get motd
-			motd = Readfromserver.getpage("http://aiftp.zapto.org/motd");
+			motd = Readfromserver.motd();
 			
 			//Echo motd (Debugging only)
 			System.out.println("MOTD - " + motd);
@@ -139,7 +139,6 @@ class Main
 	}
 	public static void AI_Proc () throws IOException, InterruptedException {
 		while (proc_mode == true) {
-			System.out.print("> ");
 			stdin = input.nextLine();
 			
 			//Only parse if string isn't null
@@ -151,7 +150,7 @@ class Main
 			} else {
 				parse(stdin);
 			}
-			
+			System.out.print("> ");
 			}
 		}
 	}
@@ -250,6 +249,7 @@ class Main
 			say("Are you sure ", false);
 			String yes_or_no = Main.input.nextLine().toLowerCase();
 			if (yes_or_no.contains("yes") || yes_or_no.contains("y")) {
+			say("Goodbye", true);
 			System.exit(0);
 			}
 		}
@@ -268,6 +268,10 @@ class Main
 			String value = Main.input.nextLine();
 			Properties_Utils.set_prop(name, value);
 			say("Property set.", true);
+		}
+		
+		if (input.equals("motd")) {
+			say(Readfromserver.motd(), true);
 		}
 		
 		if (input.startsWith("propout ")) {
@@ -309,7 +313,7 @@ class Main
 		{
 			try {
 				Procedure.install();
-				//Procedure.welcome();
+				Procedure.welcome();
 				proc_mode = true;
 				AI_Proc ();
 			} catch (IOException | InterruptedException e) {

@@ -25,11 +25,8 @@ class Procedure {
 		Main.first_name = Properties_Utils.get_prop("first_name");
 		Main.last_name = Properties_Utils.get_prop("last_name");
 		Main.fullname = Main.first_name + " " + Main.last_name;
-		if (Main.just_installed != true) {
 		System.out.println("Hello " + Main.first_name + ", It's " + Utils.get_time());
-		} else {
-			System.out.println(Main.first_name + ", It's " + Utils.get_time());
-		}
+		System.out.print("> ");
 	}
 	
 	public static void first_name () throws IOException, InterruptedException {
@@ -66,13 +63,13 @@ class Procedure {
 		} else {
 			System.out.print("Oh where are we then? ");
 			Utils.speak("Oh where are we then?");
-			String place = Main.input.next();
+			Main.input.nextLine();
+			String place = Main.input.nextLine();
 			place = place.trim();
 			if (place != null) {
 			Properties_Utils.set_prop("place", place);
 			Main.place_found = true;
 			Properties_Utils.set_prop("place_confirmed", "true");
-			Main.input.next();
 			}
 		}
 	}
