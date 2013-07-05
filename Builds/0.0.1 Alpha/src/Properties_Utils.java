@@ -49,6 +49,14 @@ class Properties_Utils
 		}
 	}
 	
+	public static void rm_prop (String prop) {
+		try {
+			Main.config_prop.remove(prop);
+			Properties_Utils.store();
+		} catch (Exception ex) {
+		}
+	}
+	
 	public static String get_prop (String prop) {
 		try {
 			return Main.config_prop.getProperty(prop);

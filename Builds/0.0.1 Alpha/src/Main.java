@@ -188,6 +188,7 @@ class Main
 	{
 		say("I don't know what to say", true);
 	}
+	
 	public static void say(String input, Boolean newline) throws IOException, InterruptedException
 	{
 		if (Properties_Utils.get_prop("use_audio").equals("yes")) {
@@ -234,6 +235,22 @@ class Main
 			} else {
 				Properties_Utils.set_prop("use_audio", "no");
 			}
+		}
+		
+		if (input.startsWith("rmprop")) {
+			say("Name of property ", false);
+			String name = Main.input.nextLine();
+			Properties_Utils.rm_prop(name);
+			say("Property removed", true);
+		}
+		
+		if (input.startsWith("setprop")) {
+			say("Name of property ", false);
+			String name = Main.input.nextLine();
+			say("Property value ", false);
+			String value = Main.input.nextLine();
+			Properties_Utils.set_prop(name, value);
+			say("Property set", true);
 		}
 		
 		if (input.startsWith("propout ")) {
