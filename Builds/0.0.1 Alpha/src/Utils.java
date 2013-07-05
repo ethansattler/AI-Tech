@@ -36,6 +36,14 @@ class Utils {
     	return time;
 	}
 	
+	public static String get_12hr_time () {
+		Calendar cal = Calendar.getInstance();
+    	cal.getTime();
+    	SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss a");
+		String time = ""+sdf.format(cal.getTime());
+    	return time;
+	}
+	
 	public static Boolean yes_parse(String input) {
 		if (Arrays.asList("yes", "y", "yep", "yea", "aye", "true", "affirmative", "granted", "mhm").contains(input.toLowerCase().trim())) {
 			return true;

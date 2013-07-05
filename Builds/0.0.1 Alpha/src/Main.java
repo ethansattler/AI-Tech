@@ -19,7 +19,8 @@ class Main
 	public static Boolean just_installed = false;
 	public static Boolean proc_mode = false;
 	public static Boolean internet_access = false, place_found = false, internet_error = false;
-	public static String IP, place, audio;
+	public static String IP, place, audio, stdin;
+	
 
 	//Currently undefined user variables
 	public static String first_name, last_name, fullname;
@@ -102,11 +103,12 @@ class Main
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
-			System.out.print("System interrupted, Error...");
-			
+			System.out.print("System interrupted, Error...");			
 		}	
 		}
-		
+		if (error.equals("runtime")) {
+			System.out.print("Warning: runtime error");
+		}
 		if (error.equals("adderrorhere")) {
 			System.out.print("adderrorhere. Exiting...");
 			System.exit(0);
@@ -125,7 +127,43 @@ class Main
 	}
 	public static void AI_Proc () {
 		while (proc_mode == true) {
+			System.out.print("> ");
+			stdin = input.nextLine();
 			
+			//Check for (direct to AI) ;; command
+			if (stdin.startsWith(";;")) {
+				Direct_to_AI(stdin);
+			}
+		}
+	}
+	
+	public static void Direct_to_AI(String input)
+	{
+		input = input.replace(";;", "");
+		
+		if (input.startsWith("echo "))
+		{
+			input = input.replace("echo ", "");
+			System.out.println(input);
+		}
+		
+		if (input.equals("clear"))
+		{
+			try {
+				Runtime.getRuntime().exec("clear");
+			} catch (Exception ex) {
+				error("runtime");
+			}
+		}
+		
+		if (input.contains("time"))
+		{
+			if (input.contains("-12"))
+			{
+				System.out.println(Utils.get_12hr_time ());	
+			} else {
+				System.out.println(Utils.get_time());
+			}
 		}
 	}
 	
