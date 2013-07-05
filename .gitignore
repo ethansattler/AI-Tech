@@ -1,4 +1,3 @@
-Builds/0.0.1 Alpha/.AI-Config.properties
-Builds/.metadata/
-Builds/0.0.1 Alpha/.settings/
-Builds/0.0.1 Alpha/jar/.AI-Config.properties
+./Builds/.metadata
+./Builds/0.0.1 Alpha/.settings
+./Builds/0.0.1 Alpha/.metadata
