@@ -3,6 +3,7 @@
 import java.io.*;
 import java.util.Properties;
 import java.util.Scanner;
+import java.sql.*;
 
 class Main 
 {
@@ -233,14 +234,22 @@ class Main
 			}
 		}
 		
-		if (input.startsWith("rmprop")) {
+		if (input.equals("exit")) {
+			say("Are you sure ", false);
+			String yes_or_no = Main.input.nextLine().toLowerCase();
+			if (yes_or_no.contains("yes") || yes_or_no.contains("y")) {
+			System.exit(0);
+			}
+		}
+		
+		if (input.equals("rmprop")) {
 			say("Name of property ", false);
 			String name = Main.input.nextLine();
 			Properties_Utils.rm_prop(name);
 			say("Property removed.", true);
 		}
 		
-		if (input.startsWith("setprop")) {
+		if (input.equals("setprop")) {
 			say("Name of property ", false);
 			String name = Main.input.nextLine();
 			say("Property value ", false);
