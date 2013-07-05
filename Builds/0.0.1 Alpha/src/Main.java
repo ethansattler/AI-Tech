@@ -13,11 +13,7 @@ class Main
 	public static File config_file = new File(".AI-Config.properties");
 	public static String config_path = ".AI-Config.properties";
 	public static Properties config_prop = new Properties();
-	public static Boolean config_loaded;
-	public static Boolean config_written = true;
-	public static Boolean installed;
-	public static Boolean just_installed = false;
-	public static Boolean proc_mode = false;
+	public static Boolean config_loaded, config_written = true, installed, just_installed = false, proc_mode = false;
 	public static Boolean internet_access = false, place_found = false, internet_error = false;
 	public static String IP, place, audio, stdin;
 	
@@ -241,7 +237,7 @@ class Main
 			say("Name of property ", false);
 			String name = Main.input.nextLine();
 			Properties_Utils.rm_prop(name);
-			say("Property removed", true);
+			say("Property removed.", true);
 		}
 		
 		if (input.startsWith("setprop")) {
@@ -250,7 +246,7 @@ class Main
 			say("Property value ", false);
 			String value = Main.input.nextLine();
 			Properties_Utils.set_prop(name, value);
-			say("Property set", true);
+			say("Property set.", true);
 		}
 		
 		if (input.startsWith("propout ")) {
