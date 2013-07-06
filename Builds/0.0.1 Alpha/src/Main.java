@@ -50,6 +50,7 @@ class Main
 			
 			//Echo motd (Debugging only)
 			System.out.println("MOTD - " + motd);
+			Utils.speak("The message of the day is: " + motd);
 			}
 		} catch (Exception e) {
 			internet_error = true;
