@@ -96,7 +96,8 @@ class Main
 		}
 		
 		if (installed == false) {
-			Procedure.install();		
+			Procedure.install();
+			installed = true;
 		}
 		
 		if (installed == true) {
@@ -151,8 +152,8 @@ class Main
 			} else {
 				parse(stdin);
 			}
-			System.out.print("> ");
 			}
+			System.out.print("> ");
 		}
 	}
 	
