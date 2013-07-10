@@ -152,8 +152,8 @@ class Main
 			} else {
 				parse(stdin);
 			}
-			}
 			System.out.print("> ");
+			}
 		}
 	}
 	
